@@ -9,6 +9,8 @@ namespace MagicVilla_VillaAPI.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
         public DbSet<Villa> Villas { get; set; }
 
+        public DbSet<VillaNumber> VillaNumbers { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Villa>().HasData(
@@ -72,6 +74,20 @@ namespace MagicVilla_VillaAPI.Data
                   Amenity = "",
                   CreatedDate = DateTime.Now
               }
+                );
+
+            modelBuilder.Entity<VillaNumber>().HasData(
+                new VillaNumber
+                {
+                    VillaNo = 100,
+                    SpecialDetails = "Includes Handicap Ramp"
+                },
+                new VillaNumber
+                {
+                    VillaNo = 101,
+                    SpecialDetails = "Includes 2nd Floor Balcony"
+                }
+
                 );
         }
     }
